@@ -1,0 +1,21 @@
+{
+  "name": "budget_project",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "server": "json-server --watch db.json --port 3004"
+  },
+  "dependencies": {
+    "vue": "^3.4.21",
+    "json-server": "^1.0.0-alpha.23"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.6"
+  }
+}
