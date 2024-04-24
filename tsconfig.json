@@ -9,11 +9,21 @@
       "DOM.Iterable"
     ],
     "skipLibCheck": true,
+    "baseUrl": ".",
     "paths": {
-      "@src/*": [
+      "@@/*": [
+        "./src/components/*"
+      ],
+      "@/*": [
         "./src/*"
+      ],
+      "#root/*": [
+        "./*"
       ]
     },
+    "types": [
+      "vuetify"
+    ],
     /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
@@ -28,9 +38,7 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
+    "src"
   ],
   "references": [
     {
