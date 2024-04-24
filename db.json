@@ -1,1 +1,36 @@
-{}
+{
+  "budget": [
+    {
+      "id": "8397b330-009c-11ef-a5a2-059159128b62",
+      "name": "Bread22",
+      "amount": 300,
+      "category": "food",
+      "date": "2024-04-21T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "d31f3e30-00b7-11ef-958b-edeec7800d9e",
+      "amount": 30000,
+      "category": "salary",
+      "date": "2024-04-21T21:00:00.000Z",
+      "type": "incomes",
+      "name": "salary"
+    },
+    {
+      "id": "dc2c4a40-00b7-11ef-958b-edeec7800d9e",
+      "name": "Coca Cola11",
+      "amount": 100,
+      "category": "food",
+      "date": "2024-04-21T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "e02d6020-00b7-11ef-958b-edeec7800d9e",
+      "name": "Coca Cola32",
+      "amount": 100,
+      "category": "food",
+      "date": "2024-04-22T21:00:00.000Z",
+      "type": "expanses"
+    }
+  ]
+}
