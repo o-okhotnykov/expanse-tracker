@@ -22,6 +22,10 @@ export type Category = {
   icon: string;
 };
 
+export type CategoriesAmount = {
+  [key in ExpanseCategory | IncomeCategory]: number;
+};
+
 export const ExpanseCategories: Category[] = [
   { title: ExpanseCategory.Food, icon: "mdi-food" },
   {
