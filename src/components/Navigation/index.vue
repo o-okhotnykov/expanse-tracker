@@ -9,7 +9,6 @@
     <v-list-item link :to="{ name: PathsNames.dashboard }">
       <p class="text-button">{{ PathsNames.dashboard }}</p>
     </v-list-item>
-
     <v-list-item link :to="{ name: PathsNames.history }">
       <p class="text-button">{{ PathsNames.history }}</p>
     </v-list-item>
@@ -22,6 +21,7 @@ import { PathsNames } from "@/router/paths";
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
+
 const drawer = ref<boolean>(false);
 </script>
 

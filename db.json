@@ -31,6 +31,53 @@
       "category": "food",
       "date": "2024-04-22T21:00:00.000Z",
       "type": "expanses"
+    },
+    {
+      "id": "91ffa220-02f4-11ef-863c-3175dd0b603f",
+      "name": "rent",
+      "amount": 1000,
+      "category": "housing",
+      "date": "2024-04-24T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "a4c897e0-02f4-11ef-863c-3175dd0b603f",
+      "name": "chipsy",
+      "amount": 3000,
+      "category": "health",
+      "date": "2024-04-24T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "bfbdaf90-02f4-11ef-863c-3175dd0b603f",
+      "name": "chipsy",
+      "amount": 305,
+      "category": "health",
+      "type": "expanses"
+    },
+    {
+      "id": "f0861a00-02f8-11ef-81cd-2daa977547eb",
+      "name": "Donate",
+      "amount": 500,
+      "category": "donations",
+      "date": "2024-04-24T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "20400a90-0311-11ef-8562-a583e30e8ab5",
+      "name": "tt",
+      "amount": 300,
+      "category": "donations",
+      "date": "2024-04-24T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "dd991820-0311-11ef-8562-a583e30e8ab5",
+      "name": "chipsy",
+      "amount": 100,
+      "category": "food",
+      "date": "2024-04-24T21:00:00.000Z",
+      "type": "expanses"
     }
   ]
 }
