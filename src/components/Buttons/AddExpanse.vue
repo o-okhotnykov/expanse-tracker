@@ -36,7 +36,7 @@ import { ExpanseCategories } from '@/constants/categories'
 import { useStore } from "@/store";
 import { MoneyOperationType } from "@/store/types";
 import { ActionTypes } from "@/store/actions";
-import { validateSchema } from "@/constants/validateSchema";
+import { validateExpanseSchema } from "@/constants/validateSchema";
 
 const store = useStore();
 
@@ -44,7 +44,7 @@ const { handleSubmit } = useForm<{
     name: string, amount: number, category: string, date: string
 
 }>({
-    validationSchema: validateSchema,
+    validationSchema: validateExpanseSchema,
 });
 
 

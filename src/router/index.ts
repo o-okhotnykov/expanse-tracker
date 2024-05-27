@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 import MainPage from "@@/Dashboard/index.vue";
 import History from "@@/History/index.vue";
 import { Paths, PathsNames } from "./paths";
@@ -10,6 +10,7 @@ const routes = [
 ];
 
 export const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
+

@@ -30,7 +30,7 @@ import { useStore } from "@/store";
 import { MoneyOperation } from '@/store/types'
 import { getCategoryIcon, ExpanseCategories } from '@/constants/categories'
 import { ActionTypes } from "@/store/actions";
-import { validateSchema } from "@/constants/validateSchema";
+import { validateExpanseSchema } from "@/constants/validateSchema";
 
 const props = defineProps<MoneyOperation & { isEditing: boolean }>()
 const emit = defineEmits(['toggleEditing'])
@@ -41,7 +41,7 @@ const { handleSubmit } = useForm<{
 
 }>({
     initialValues: { name: props.name, category: props.category, amount: props.amount },
-    validationSchema: validateSchema,
+    validationSchema: validateExpanseSchema,
 });
 
 

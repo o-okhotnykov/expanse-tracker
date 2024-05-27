@@ -78,6 +78,61 @@
       "category": "food",
       "date": "2024-04-24T21:00:00.000Z",
       "type": "expanses"
+    },
+    {
+      "id": "a3baddd0-06d8-11ef-a16a-c74a26bc0bed",
+      "name": "kimchi",
+      "amount": 100,
+      "category": "food",
+      "date": "2024-04-29T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "a8a457e0-06d8-11ef-a16a-c74a26bc0bed",
+      "name": "kimchi",
+      "amount": 100,
+      "category": "health",
+      "date": "2024-04-29T21:00:00.000Z",
+      "type": "expanses"
+    },
+    {
+      "id": "b1134f30-06d8-11ef-a16a-c74a26bc0bed",
+      "name": "kimchi",
+      "amount": 100,
+      "category": "animals",
+      "type": "expanses"
+    },
+    {
+      "id": "23f28160-06d9-11ef-a16a-c74a26bc0bed",
+      "amount": 400,
+      "category": "side",
+      "date": "2024-04-29T21:00:00.000Z",
+      "type": "incomes",
+      "name": "side"
+    },
+    {
+      "id": "7a963930-06d9-11ef-b10b-d92d17b457ed",
+      "amount": 600,
+      "category": "investment",
+      "date": "2024-04-29T21:00:00.000Z",
+      "type": "incomes",
+      "name": "investment"
+    },
+    {
+      "id": "99596fe0-06d9-11ef-8666-d3433c21c888",
+      "amount": 100,
+      "category": "investment",
+      "date": "2024-04-29T21:00:00.000Z",
+      "type": "incomes",
+      "name": "investment"
+    },
+    {
+      "id": "9bf8d2e0-06d9-11ef-8666-d3433c21c888",
+      "amount": 10000,
+      "category": "investment",
+      "date": "2024-04-29T21:00:00.000Z",
+      "type": "incomes",
+      "name": "investment"
     }
   ]
 }
