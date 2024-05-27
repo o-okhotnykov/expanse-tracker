@@ -7,19 +7,7 @@
   </v-app>
 </template>
 
-<script setup >
-
-
-console.log(console.log([
-  { "id": "1" },
-  { "id": "1" },
-  { "id": "2" }
-].groupBy(function (item) {
-  return item.id;
-}
-)));
-
-
+<script setup lang="ts">
 import Navigation from "@@/Navigation/index.vue";
 </script>
 

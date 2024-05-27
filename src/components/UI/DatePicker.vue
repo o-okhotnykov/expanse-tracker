@@ -1,7 +1,7 @@
 <template>
   <v-menu ref="menu" :close-on-content-click="false" location="bottom" transition="scale-transition" min-width="290px">
     <template v-slot:activator="{ props }">
-      <v-text-field label="Date" v-model="value" :value="date.format(value, 'fullDateWithWeekday')" readonly
+      <v-text-field label="Date" v-model="value" :value="format(value, 'fullDateWithWeekday')" readonly
         :error-messages="errorMessage" v-bind="props"></v-text-field>
     </template>
     <v-date-picker v-model="value" hide-header> </v-date-picker>
@@ -12,7 +12,8 @@
 import { useField } from "vee-validate";
 import { useDate } from "vuetify";
 
-const date = useDate();
+const { format } = useDate();
 
 const { value, errorMessage } = useField("date", (inputValue) => !!inputValue);
+
 </script>

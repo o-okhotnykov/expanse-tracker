@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import { budgetValidation, registerValidation } from "./validations/validation";
 import { checkAuth, handleValidationError } from "./utils";
 import { UserController, BudgetController } from "./controllers";
@@ -16,9 +17,10 @@ mongoose
   });
 
 const app = express();
-const port = 3000;
+const port = 3004;
 
 app.use(express.json());
+app.use(cors());
 
 app.post(
   "/auth/login",
@@ -36,17 +38,15 @@ app.get("/auth/me", checkAuth, UserController.getMe);
 
 app.get("/budgets", BudgetController.getAllBudgets);
 app.get("/budgets/:id", BudgetController.getBudget);
-app.delete("/budgets/:id", checkAuth, BudgetController.deleteBudget);
+app.delete("/budgets/:id", BudgetController.deleteBudget);
 app.post(
   "/budgets",
-  checkAuth,
   budgetValidation,
   handleValidationError,
   BudgetController.createBudget
 );
 app.patch(
   "/budgets/:id",
-  checkAuth,
   budgetValidation,
   handleValidationError,
   BudgetController.updateBudget

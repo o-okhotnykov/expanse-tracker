@@ -1,6 +1,6 @@
 import { BUDGET } from "@/constants/urls";
-import { httpService } from "@/services/HttpService";
-import { MoneyOperation } from "./types";
+import { budgetService } from "@/services/BudgetService";
+import { MoneyOperation, ResponseBudget } from "./types";
 import { ActionContext, ActionTree } from "vuex";
 import { MutationTypes, Mutations } from "./mutations";
 import { State } from "./state";
@@ -22,7 +22,7 @@ type AugmentedActionContext = {
 export interface Actions {
   [ActionTypes.POST_BUDGET](
     { commit }: AugmentedActionContext,
-    payload: MoneyOperation
+    payload: ResponseBudget
   ): Promise<void>;
   [ActionTypes.FETCH_BUDGETS]({
     commit,
@@ -40,7 +40,7 @@ export interface Actions {
 export const actions: ActionTree<State, State> & Actions = {
   async [ActionTypes.POST_BUDGET]({ commit }, payload: MoneyOperation) {
     try {
-      await httpService.post(BUDGET, payload);
+      await budgetService.postBudget(payload);
       commit(MutationTypes.ADD_BUDGET, payload);
     } catch (error) {
       console.log(error);
@@ -48,7 +48,7 @@ export const actions: ActionTree<State, State> & Actions = {
   },
   async [ActionTypes.FETCH_BUDGETS]({ commit }) {
     try {
-      const { data } = await httpService.get<MoneyOperation[]>(BUDGET);
+      const data = await budgetService.getAllBudgets();
       commit(MutationTypes.FETCH_BUDGETS, data);
     } catch (error) {
       console.log(error);
@@ -56,7 +56,7 @@ export const actions: ActionTree<State, State> & Actions = {
   },
   async [ActionTypes.DELETE_BUDGET]({ commit }, payload) {
     try {
-      await httpService.delete<MoneyOperation[]>(`${BUDGET}/${payload.id}`);
+      await budgetService.deleteBudget(payload.id);
       commit(MutationTypes.DELETE_BUDGET, { id: payload.id });
     } catch (error) {
       console.log(error);
@@ -64,9 +64,7 @@ export const actions: ActionTree<State, State> & Actions = {
   },
   async [ActionTypes.PATCH_BUDGET]({ commit }, payload: MoneyOperation) {
     try {
-      await httpService.patch<MoneyOperation>(`${BUDGET}/${payload.id}`, {
-        data: payload,
-      });
+      await budgetService.patchBudget(payload);
       commit(MutationTypes.PATCH_BUDGET, payload);
     } catch (error) {
       console.log(error);

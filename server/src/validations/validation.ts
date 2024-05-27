@@ -10,7 +10,7 @@ export const registerValidation = [
 export const budgetValidation = [
   body("name").isLength({ min: 3 }).withMessage("Invalid name"),
   body("amount").isNumeric().withMessage("Invalid amount"),
-  body("date").isDate({ format: "string" }).withMessage("Invalid date"),
+  body("date").isISO8601().withMessage("Invalid date"),
   body("type").isString(),
   body("category").isLength({ min: 3 }).withMessage("Invalid type"),
 ];

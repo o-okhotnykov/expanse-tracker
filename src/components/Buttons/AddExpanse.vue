@@ -30,7 +30,6 @@
   
 <script setup lang="ts">
 import { useField, useForm, Form } from "vee-validate";
-import { uuid } from 'vue-uuid';
 import DatePicker from "@@/UI/DatePicker.vue";
 import { ExpanseCategories } from '@/constants/categories'
 import { useStore } from "@/store";
@@ -53,6 +52,6 @@ const amount = useField<number>("amount");
 const category = useField<string>("category");
 
 const submit = handleSubmit(values => {
-    store.dispatch(ActionTypes.POST_BUDGET, { ...values, id: uuid.v1(), type: MoneyOperationType.expanses });
+    store.dispatch(ActionTypes.POST_BUDGET, { ...values, type: MoneyOperationType.expanses, date: new Date(values.date) });
 })
 </script>

@@ -33,6 +33,7 @@ import { ActionTypes } from "@/store/actions";
 import { validateExpanseSchema } from "@/constants/validateSchema";
 
 const props = defineProps<MoneyOperation & { isEditing: boolean }>()
+
 const emit = defineEmits(['toggleEditing'])
 const store = useStore();
 
@@ -50,7 +51,7 @@ const amount = useField<number>("amount");
 const category = useField<string>("category");
 
 const submit = handleSubmit(values => {
-    store.dispatch(ActionTypes.PATCH_BUDGET, { ...values, id: props.id, type: props.type });
+    store.dispatch(ActionTypes.PATCH_BUDGET, { ...values, _id: props._id, type: props.type, date: new Date(props.date) });
     emit("toggleEditing");
 })
 </script>

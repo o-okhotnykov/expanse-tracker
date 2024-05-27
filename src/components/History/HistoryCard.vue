@@ -8,7 +8,7 @@
             </div>
             <div>
                 <v-btn icon="mdi-pencil" size="small" color="primary" class="mx-4" @click="toggleEditing" />
-                <DeleteBtn :id="props.id" />
+                <DeleteBtn :id="props._id" />
             </div>
         </div>
         <HistoryCardEdit :isEditing="isEditing" v-bind="props" @toggleEditing="toggleEditing" />

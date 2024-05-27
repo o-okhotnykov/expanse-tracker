@@ -4,10 +4,18 @@ export enum MoneyOperationType {
 }
 
 export interface MoneyOperation {
-  id: string;
+  _id: string;
   name: string;
   amount: number;
-  date: string;
+  date: Date;
+  category: string;
+  type: MoneyOperationType;
+}
+
+export interface ResponseBudget {
+  name: string;
+  amount: number;
+  date: Date;
   category: string;
   type: MoneyOperationType;
 }

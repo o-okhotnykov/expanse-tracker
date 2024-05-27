@@ -27,6 +27,7 @@ export const getters: GetterTree<State, State> & Getters = {
     );
   },
   expanses: (state) => {
+    console.log(state);
     return state.budgets.filter(
       (expanse) => expanse.type === MoneyOperationType.expanses
     );

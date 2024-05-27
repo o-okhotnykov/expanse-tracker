@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export const BASE_URL = "http://localhost:3004/";
 
-class HttpService {
+export class HttpService {
   baseUrl: string;
 
   service: AxiosInstance;
@@ -33,11 +33,11 @@ class HttpService {
     });
   }
 
-  patch<T>(path: string, payload: Partial<AxiosRequestConfig> = {}) {
+  patch<T>(path: string, payload: unknown) {
     return this.request<T>({
       method: "PATCH",
       url: path,
-      ...payload,
+      data: payload,
     });
   }
 
@@ -49,5 +49,3 @@ class HttpService {
     });
   }
 }
-
-export const httpService = new HttpService(BASE_URL);
