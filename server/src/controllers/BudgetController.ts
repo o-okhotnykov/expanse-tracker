@@ -86,6 +86,7 @@ export const getAllBudgets = async (
 ) => {
   try {
     const budgets = await BudgetModel.find();
+
     res.json(budgets);
   } catch (error) {
     console.log(error);
