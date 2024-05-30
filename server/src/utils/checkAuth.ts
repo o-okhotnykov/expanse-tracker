@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { Response, NextFunction } from "express";
 import { TokenInterface } from "../types/token";
 import { IGetUserAuthInfoRequest } from "../controllers/UserController";
+import { AppError, HttpCode } from "../exceptions";
 
 export default (
   req: IGetUserAuthInfoRequest,
@@ -15,13 +16,15 @@ export default (
       req.userId = decoded._id;
       next();
     } catch (err) {
-      return res.status(403).json({
-        message: "Unauthorized",
+      throw new AppError({
+        httpCode: HttpCode.UNAUTHORIZED,
+        description: "Unauthorized",
       });
     }
   } else {
-    return res.status(403).json({
-      message: "Unauthorized",
+    throw new AppError({
+      httpCode: HttpCode.UNAUTHORIZED,
+      description: "Unauthorized",
     });
   }
 };

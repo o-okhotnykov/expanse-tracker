@@ -1,9 +1,10 @@
-import express from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { UserController } from "../controllers";
 import { checkAuth, handleValidationError } from "../utils";
 import { loginValidation, registerValidation } from "../validations/validation";
+import { AppError, errorHandler } from "../exceptions";
 
-export const router = express.Router();
+export const router = Router();
 
 router.post(
   "/login",

@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import BudgetModel from "../models/Budget";
 import { IGetUserAuthInfoRequest } from "./UserController";
 
 export const createBudget = async (
   req: IGetUserAuthInfoRequest,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const doc = new BudgetModel({
@@ -19,14 +20,14 @@ export const createBudget = async (
     const budget = await doc.save();
     res.json(budget);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 };
 
 export const deleteBudget = async (
   req: IGetUserAuthInfoRequest,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const postId = req.params.id;
@@ -34,14 +35,14 @@ export const deleteBudget = async (
     await BudgetModel.findOneAndDelete({ _id: postId });
     res.json({ message: "Budget deleted successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 };
 
 export const updateBudget = async (
   req: IGetUserAuthInfoRequest,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const postId = req.params.id;
@@ -59,14 +60,14 @@ export const updateBudget = async (
     );
     res.json({ message: "Budget updated successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 };
 
 export const getBudget = async (
   req: IGetUserAuthInfoRequest,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const postId = req.params.id;
@@ -75,14 +76,14 @@ export const getBudget = async (
 
     res.json(budget);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 };
 
 export const getAllBudgets = async (
   req: IGetUserAuthInfoRequest,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const budgets = await BudgetModel.find();
@@ -90,6 +91,6 @@ export const getAllBudgets = async (
     res.json(budgets);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 };
