@@ -7,10 +7,10 @@
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" temporary>
     <v-list-item link :to="{ name: PathsNames.dashboard }">
-      <p class="text-button">{{ PathsNames.dashboard }}</p>
+      <p>{{ PathsNames.dashboard }}</p>
     </v-list-item>
     <v-list-item link :to="{ name: PathsNames.history }">
-      <p class="text-button">{{ PathsNames.history }}</p>
+      <p>{{ PathsNames.history }}</p>
     </v-list-item>
   </v-navigation-drawer>
 </template>
@@ -25,9 +25,3 @@ const route = useRoute()
 const drawer = ref<boolean>(false);
 </script>
 
-
-<style scoped>
-.nav-link {
-  text-transform: uppercase;
-}
-</style>

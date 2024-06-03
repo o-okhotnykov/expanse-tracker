@@ -1,3 +1,6 @@
+import { loginSchema, registerSchema } from "@/types/auth";
+import { Schema, object, string } from "yup";
+
 export const validateExpanseSchema = {
   name(value: string) {
     if (value?.length >= 2) return true;
@@ -15,6 +18,7 @@ export const validateExpanseSchema = {
     return "Select an item.";
   },
 };
+
 export const validateIncomeSchema = {
   amount(value: number) {
     if (value > 0) return true;
@@ -25,5 +29,23 @@ export const validateIncomeSchema = {
     if (value) return true;
 
     return "Select an item.";
+  },
+};
+
+export const registerSchemaValidation: Schema<registerSchema> = object({
+  email: string().email().required("Email is required."),
+  password: string().required("Password is required."),
+  fullName: string().required("Full name is required."),
+});
+export const loginSchemaValidation: Schema<loginSchema> = object({
+  email: string().email().required("Email is required."),
+  password: string().required("Password is required."),
+});
+
+export const validateRegisterSchema = {
+  email(value: string) {
+    if (value) return true;
+
+    return "Email is required.";
   },
 };

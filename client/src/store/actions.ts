@@ -1,15 +1,18 @@
-import { BUDGET } from "@/constants/urls";
 import { budgetService } from "@/services/BudgetService";
 import { MoneyOperation, ResponseBudget } from "./types";
 import { ActionContext, ActionTree } from "vuex";
 import { MutationTypes, Mutations } from "./mutations";
 import { State } from "./state";
+import { loginSchema, registerSchema } from "@/types/auth";
+import { authService } from "@/services/AuthService";
 
 export enum ActionTypes {
   POST_BUDGET = "POST_BUDGET",
   FETCH_BUDGETS = "FETCH_BUDGETS",
   DELETE_BUDGET = "DELETE_BUDGET",
   PATCH_BUDGET = "PATCH_BUDGET",
+  REGISTER_USER = "REGISTER_USER",
+  LOGIN_USER = "LOGIN_USER",
 }
 
 type AugmentedActionContext = {
@@ -23,6 +26,14 @@ export interface Actions {
   [ActionTypes.POST_BUDGET](
     { commit }: AugmentedActionContext,
     payload: ResponseBudget
+  ): Promise<void>;
+  [ActionTypes.REGISTER_USER](
+    { commit }: AugmentedActionContext,
+    payload: registerSchema
+  ): Promise<void>;
+  [ActionTypes.LOGIN_USER](
+    { commit }: AugmentedActionContext,
+    payload: loginSchema
   ): Promise<void>;
   [ActionTypes.FETCH_BUDGETS]({
     commit,
@@ -66,6 +77,23 @@ export const actions: ActionTree<State, State> & Actions = {
     try {
       await budgetService.patchBudget(payload);
       commit(MutationTypes.PATCH_BUDGET, payload);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async [ActionTypes.REGISTER_USER]({ commit }, payload: registerSchema) {
+    try {
+      const data = await authService.registerUser(payload);
+      commit(MutationTypes.REGISTER_USER, data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async [ActionTypes.LOGIN_USER]({ commit }, payload: loginSchema) {
+    try {
+      console.log(payload);
+      const data = await authService.loginUser(payload);
+      commit(MutationTypes.LOGIN_USER, data);
     } catch (error) {
       console.log(error);
     }

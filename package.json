@@ -9,7 +9,10 @@
         "devServer": "npm run -w @expanse-tracker/server dev"
     },
     "devDependencies": {
-        "typescript": "^5.4.5",
-        "eslint": "^9.3.0"
+        "eslint": "^9.3.0",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "yup": "^1.4.0"
     }
 }
