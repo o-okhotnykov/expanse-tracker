@@ -1,33 +1,33 @@
 import { GetterTree } from "vuex";
-import { MoneyOperation, MoneyOperationType } from "./types";
-import { State } from "./state";
+import { MoneyOperation, MoneyOperationType } from "@/types/budget";
+import { BudgetState } from "./state";
 import { CategoriesAmount } from "@/constants/categories";
+import { RootState } from "..";
 
 export type Getters = {
-  incomes(state: State): MoneyOperation[];
-  expanses(state: State): MoneyOperation[];
+  incomes(state: BudgetState): MoneyOperation[];
+  expanses(state: BudgetState): MoneyOperation[];
   balance(
-    state: State,
+    state: BudgetState,
     getters: { incomes: MoneyOperation[]; expanses: MoneyOperation[] }
   ): number;
   categoriesExpanseAmount(
-    state: State,
+    state: BudgetState,
     getters: { expanses: MoneyOperation[] }
   ): CategoriesAmount;
   categoriesIncomeAmount(
-    state: State,
+    state: BudgetState,
     getters: { incomes: MoneyOperation[] }
   ): CategoriesAmount;
 };
 
-export const getters: GetterTree<State, State> & Getters = {
+export const getters: GetterTree<BudgetState, RootState> & Getters = {
   incomes: (state) => {
     return state.budgets.filter(
       (income) => income.type === MoneyOperationType.income
     );
   },
   expanses: (state) => {
-    console.log(state);
     return state.budgets.filter(
       (expanse) => expanse.type === MoneyOperationType.expanses
     );

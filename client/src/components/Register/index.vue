@@ -32,9 +32,9 @@ import { useField, useForm, Form } from "vee-validate";
 import { toTypedSchema } from '@vee-validate/yup';
 import { Paths } from '@/router/paths'
 import { registerSchemaValidation } from "@/constants/validateSchema";
-import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 import { registerSchema } from "@/types/auth";
+import { ActionAuthTypes } from "@/store/AuthModule/actions";
 
 const store = useStore();
 
@@ -47,7 +47,7 @@ const fullName = useField<string>("fullName");
 const password = useField<string>("password");
 
 const submit = handleSubmit(values => {
-    store.dispatch(ActionTypes.REGISTER_USER, values);
+    store.dispatch(ActionAuthTypes.REGISTER_USER, values);
 })
 </script>
   

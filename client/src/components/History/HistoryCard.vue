@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { MoneyOperation } from '@/store/types'
+import { MoneyOperation } from '@/types/budget'
 import { getCategoryIcon } from '@/constants/categories'
 import DeleteBtn from '@@/Buttons/DeleteBtn.vue'
 

@@ -1,46 +1,28 @@
-import {
-  createStore,
-  useStore as baseUseStore,
-  Store as VuexStore,
-  CommitOptions,
-  DispatchOptions,
-} from "vuex";
-import { InjectionKey } from "vue";
-import { Mutations, mutations } from "./mutations";
-import { Actions, actions } from "./actions";
-import { Getters, getters } from "./getters";
-import { State, state } from "./state";
+import { createStore } from "vuex";
+import VuexPersistence from "vuex-persist";
+import { AuthState, AuthStore, moduleAuth } from "./AuthModule";
+import { BudgetState, BudgetsStore, moduleBudget } from "./BudgetModule";
 
-export type Store = Omit<
-  VuexStore<State>,
-  "getters" | "commit" | "dispatch"
-> & {
-  commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
-    key: K,
-    payload: P,
-    options?: CommitOptions
-  ): ReturnType<Mutations[K]>;
-} & {
-  dispatch<K extends keyof Actions>(
-    key: K,
-    payload?: Parameters<Actions[K]>[1],
-    options?: DispatchOptions
-  ): ReturnType<Actions[K]>;
-} & {
-  getters: {
-    [K in keyof Getters]: ReturnType<Getters[K]>;
-  };
+export type RootState = {
+  auth: AuthState;
+  budgets: BudgetState;
 };
 
-export const key: InjectionKey<VuexStore<State>> = Symbol();
-
-export const store = createStore({
-  state,
-  getters,
-  mutations,
-  actions,
+const vuexLocal = new VuexPersistence<RootState>({
+  storage: window.localStorage,
 });
 
-export function useStore() {
-  return baseUseStore(key) as Store;
+export type Store = AuthStore<Pick<RootState, "auth">> &
+  BudgetsStore<Pick<RootState, "budgets">>;
+
+export const store = createStore({
+  plugins: [vuexLocal.plugin],
+  modules: {
+    moduleAuth,
+    moduleBudget,
+  },
+});
+
+export function useStore(): Store {
+  return store as Store;
 }

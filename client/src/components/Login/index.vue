@@ -28,11 +28,14 @@
 <script setup lang="ts">
 import { useField, useForm, Form } from "vee-validate";
 import { toTypedSchema } from '@vee-validate/yup';
-import { Paths } from '@/router/paths'
+import { Paths, PathsNames } from '@/router/paths'
 import { loginSchemaValidation } from "@/constants/validateSchema";
-import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 import { loginSchema } from "@/types/auth";
+import { useRouter } from 'vue-router';
+import { ActionAuthTypes } from "@/store/AuthModule/actions";
+
+const router = useRouter()
 
 const store = useStore();
 
@@ -43,8 +46,9 @@ const { handleSubmit } = useForm<loginSchema>({
 const email = useField<string>("email");
 const password = useField<string>("password");
 
-const submit = handleSubmit(values => {
-    store.dispatch(ActionTypes.LOGIN_USER, values);
+const submit = handleSubmit(async (values) => {
+    await store.dispatch(ActionAuthTypes.LOGIN_USER, values);
+    router.push({ name: PathsNames.dashboard });
 })
 
 </script>

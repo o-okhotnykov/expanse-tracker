@@ -26,12 +26,12 @@ import { onMounted } from "vue";
 import { useStore } from "@/store";
 import AddIncome from "@@/Buttons/AddIncome.vue";
 import AddExpanse from '@@/Buttons/AddExpanse.vue'
-import { ActionTypes } from "@/store/actions";
 import Chart from '@@/Chart/index.vue'
+import { ActionBudgetTypes } from "@/store/BudgetModule/actions";
 
 const store = useStore();
 
 onMounted(() => {
-  store.dispatch(ActionTypes.FETCH_BUDGETS)
+  store.dispatch(ActionBudgetTypes.FETCH_BUDGETS)
 })
 </script>

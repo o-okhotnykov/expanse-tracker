@@ -31,9 +31,9 @@ import { useField, useForm, Form } from "vee-validate";
 import DatePicker from "@@/UI/DatePicker.vue";
 import { IncomeCategories } from '@/constants/categories'
 import { useStore } from "@/store";
-import { MoneyOperationType } from "@/store/types";
-import { ActionTypes } from "@/store/actions";
+import { MoneyOperationType } from "@/types/budget";
 import { validateIncomeSchema } from "@/constants/validateSchema";
+import { ActionBudgetTypes } from "@/store/BudgetModule/actions";
 
 const store = useStore();
 
@@ -48,6 +48,6 @@ const amount = useField<number>("amount");
 const category = useField<string>("category");
 
 const submit = handleSubmit(values => {
-  store.dispatch(ActionTypes.POST_BUDGET, { ...values, type: MoneyOperationType.income, name: category.value.value, date: new Date(values.date) });
+  store.dispatch(ActionBudgetTypes.POST_BUDGET, { ...values, type: MoneyOperationType.income, name: category.value.value, date: new Date(values.date) });
 })
 </script>

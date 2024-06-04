@@ -31,7 +31,6 @@ class BudgetService {
   }
 
   async patchBudget(moneyOperation: MoneyOperation) {
-    console.log(moneyOperation);
     const { data } = await this.apiService.patch(
       `${BUDGET}/${moneyOperation._id}`,
       moneyOperation

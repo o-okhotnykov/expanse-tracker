@@ -17,3 +17,7 @@ export interface responseUser {
   updatedAt: Date;
   token: string;
 }
+
+export interface Error {
+  message: string;
+}

@@ -22,10 +22,11 @@
 
 <script setup lang="ts">
 import { useStore } from '@/store'
-import { ActionTypes } from '@/store/actions';
+import { ActionBudgetTypes } from '@/store/BudgetModule/actions';
+
 const store = useStore()
 const props = defineProps<{ id: string }>()
 const deleteItem = () => {
-    store.dispatch(ActionTypes.DELETE_BUDGET, { id: props.id })
+    store.dispatch(ActionBudgetTypes.DELETE_BUDGET, { id: props.id })
 }
 </script>

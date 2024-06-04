@@ -37,7 +37,7 @@
 import { useStore } from '@/store';
 import { onMounted, ref } from 'vue'
 import HistoryCard from './HistoryCard.vue'
-import { ActionTypes } from '@/store/actions';
+import { ActionBudgetTypes } from '@/store/BudgetModule/actions';
 
 enum Tab {
     Expanse = 1, Income = 2
@@ -48,7 +48,7 @@ const page = ref(1)
 const store = useStore();
 
 onMounted(() => {
-    store.dispatch(ActionTypes.FETCH_BUDGETS)
+    store.dispatch(ActionBudgetTypes.FETCH_BUDGETS)
 })
 
 </script>

@@ -5,11 +5,11 @@
       route.name
     }}</v-app-bar-title>
   </v-app-bar>
-  <v-navigation-drawer v-model="drawer" temporary>
+  <v-navigation-drawer v-model="drawer" temporary class="text-uppercase">
     <v-list-item link :to="{ name: PathsNames.dashboard }">
       <p>{{ PathsNames.dashboard }}</p>
     </v-list-item>
-    <v-list-item link :to="{ name: PathsNames.history }">
+    <v-list-item link :to="{ name: PathsNames.history }" class="text-uppercase">
       <p>{{ PathsNames.history }}</p>
     </v-list-item>
   </v-navigation-drawer>
