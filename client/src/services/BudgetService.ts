@@ -1,4 +1,4 @@
-import { MoneyOperation } from "@/store/types";
+import { MoneyOperation } from "@/types/budget";
 import { BASE_URL, HttpService } from "./HttpService";
 
 const BUDGET = "/budgets";
@@ -10,6 +10,7 @@ class BudgetService {
   }
 
   async getAllBudgets() {
+    this.apiService.authInterceptor();
     const { data } = await this.apiService.get<MoneyOperation[]>(BUDGET);
 
     return data;

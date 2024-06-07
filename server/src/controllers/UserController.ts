@@ -39,7 +39,7 @@ export const register = async (
 
     const { passwordHash: _, ...userData } = user._doc;
 
-    res.json({ ...userData, token });
+    res.json({ ...userData, userToken: token });
   } catch (error) {
     next(error);
   }
@@ -83,7 +83,7 @@ export const login = async (
 
     const { passwordHash: _, ...userData } = user._doc;
 
-    res.json({ ...userData, token });
+    res.json({ ...userData, userToken: token });
   } catch (error) {
     next(error);
   }

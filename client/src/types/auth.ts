@@ -15,7 +15,8 @@ export interface responseUser {
   _id: string;
   createdAt: Date;
   updatedAt: Date;
-  token: string;
+  userToken: string;
+  user: string;
 }
 
 export interface Error {

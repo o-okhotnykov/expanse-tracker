@@ -18,8 +18,8 @@ export type Store = AuthStore<Pick<RootState, "auth">> &
 export const store = createStore({
   plugins: [vuexLocal.plugin],
   modules: {
-    moduleAuth,
-    moduleBudget,
+    auth: moduleAuth,
+    budget: moduleBudget,
   },
 });
 

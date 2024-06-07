@@ -5,17 +5,19 @@ import { budgetValidation } from "../validations/validation";
 
 export const router = express.Router();
 
-router.get("", BudgetController.getAllBudgets);
+router.get("", checkAuth, BudgetController.getAllBudgets);
 router.get("/:id", BudgetController.getBudget);
 router.delete("/:id", BudgetController.deleteBudget);
 router.post(
   "",
+  checkAuth,
   budgetValidation,
   handleValidationError,
   BudgetController.createBudget
 );
 router.patch(
   "/:id",
+  checkAuth,
   budgetValidation,
   handleValidationError,
   BudgetController.updateBudget
