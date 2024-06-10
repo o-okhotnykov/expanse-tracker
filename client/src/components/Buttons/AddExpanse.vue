@@ -33,7 +33,7 @@ import { useField, useForm, Form } from "vee-validate";
 import DatePicker from "@@/UI/DatePicker.vue";
 import { ExpanseCategories } from '@/constants/categories'
 import { useStore } from "@/store";
-import { MoneyOperationType } from "@/types/budget";
+import { MoneyOperationType } from "@expanse-tracker/shared";
 import { validateExpanseSchema } from "@/constants/validateSchema";
 import { ActionBudgetTypes } from "@/store/BudgetModule/actions";
 

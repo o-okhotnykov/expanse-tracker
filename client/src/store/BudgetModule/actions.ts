@@ -1,5 +1,5 @@
 import { budgetService } from "@/services/BudgetService";
-import { MoneyOperation, ResponseBudget } from "@/types/budget";
+import { MoneyOperation, ResponseBudget } from "@shared/budget";
 import { ActionContext, ActionTree } from "vuex";
 import { MutationBudgetTypes, Mutations } from "./mutations";
 import { BudgetState } from "./state";

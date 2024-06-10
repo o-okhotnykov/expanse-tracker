@@ -1,5 +1,5 @@
 import { MutationTree } from "vuex";
-import { MoneyOperation, MoneyOperationType } from "@/types/budget";
+import { MoneyOperation, MoneyOperationType } from "@expanse-tracker/shared";
 import { BudgetState } from "./state";
 
 export enum MutationBudgetTypes {

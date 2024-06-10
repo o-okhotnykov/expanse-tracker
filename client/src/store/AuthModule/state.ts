@@ -1,4 +1,4 @@
-import { responseUser } from "@/types/auth";
+import { responseUser } from "@expanse-tracker/shared";
 
 export interface AuthState {
   user: responseUser | null;

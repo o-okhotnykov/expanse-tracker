@@ -1,4 +1,4 @@
-import { MoneyOperation } from "@/types/budget";
+import { MoneyOperation } from "@expanse-tracker/shared";
 
 export interface BudgetState {
   budgets: MoneyOperation[];

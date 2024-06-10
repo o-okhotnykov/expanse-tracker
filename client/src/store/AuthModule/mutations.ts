@@ -1,6 +1,6 @@
 import { MutationTree } from "vuex";
 import { AuthState } from "./state";
-import { responseUser } from "@/types/auth";
+import { responseUser } from "@expanse-tracker/shared";
 
 export enum MutationAuthTypes {
   REGISTER_USER = "REGISTER_USER",

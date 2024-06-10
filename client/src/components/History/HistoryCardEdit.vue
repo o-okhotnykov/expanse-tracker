@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { useField, useForm, Form } from "vee-validate";
 import { useStore } from "@/store";
-import { MoneyOperation } from '@/types/budget'
+import { MoneyOperation } from "@expanse-tracker/shared"
 import { getCategoryIcon, ExpanseCategories } from '@/constants/categories'
 import { validateExpanseSchema } from "@/constants/validateSchema";
 import { ActionBudgetTypes } from "@/store/BudgetModule/actions";

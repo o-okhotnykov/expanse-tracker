@@ -1,7 +1,7 @@
 import { ActionContext, ActionTree } from "vuex";
 import { MutationAuthTypes, Mutations } from "./mutations";
 import { AuthState } from "./state";
-import { loginSchema, registerSchema } from "@/types/auth";
+import { loginSchema, registerSchema } from "@expanse-tracker/shared";
 import { authService } from "@/services/AuthService";
 import { RootState } from "@/store";
 

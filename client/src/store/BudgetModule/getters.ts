@@ -1,5 +1,5 @@
 import { GetterTree } from "vuex";
-import { MoneyOperation, MoneyOperationType } from "@/types/budget";
+import { MoneyOperation, MoneyOperationType } from "@expanse-tracker/shared";
 import { BudgetState } from "./state";
 import { CategoriesAmount } from "@/constants/categories";
 import { RootState } from "..";

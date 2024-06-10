@@ -1,4 +1,4 @@
-import { loginSchema, registerSchema } from "@/types/auth";
+import { loginSchema, registerSchema } from "@expanse-tracker/shared";
 import { Schema, object, string } from "yup";
 
 export const validateExpanseSchema = {

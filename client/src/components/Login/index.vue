@@ -31,7 +31,7 @@ import { toTypedSchema } from '@vee-validate/yup';
 import { Paths, PathsNames } from '@/router/paths'
 import { loginSchemaValidation } from "@/constants/validateSchema";
 import { useStore } from "@/store";
-import { loginSchema } from "@/types/auth";
+import { loginSchema } from "@expanse-tracker/shared";
 import { useRouter } from 'vue-router';
 import { ActionAuthTypes } from "@/store/AuthModule/actions";
 

@@ -1,6 +1,6 @@
 export enum MoneyOperationType {
   expanses = "expanses",
-  income = "incomes",
+  incomes = "incomes",
 }
 
 export interface MoneyOperation {
@@ -18,4 +18,13 @@ export interface ResponseBudget {
   date: Date;
   category: string;
   type: MoneyOperationType;
+}
+
+export interface BudgetSchema {
+  name: string;
+  amount: number;
+  date: Date;
+  category: string;
+  type: MoneyOperationType;
+  _doc: BudgetSchema;
 }

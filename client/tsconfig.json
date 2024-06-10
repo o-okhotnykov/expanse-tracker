@@ -19,7 +19,10 @@
       ],
       "#root/*": [
         "./*"
-      ]
+      ],
+      "@shared/*": [
+        "../shared/*"
+      ],
     },
     "types": [
       "vuetify"
@@ -44,5 +47,6 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
+  "extends": "../tsconfig.base.json"
 }

@@ -33,7 +33,7 @@ import { toTypedSchema } from '@vee-validate/yup';
 import { Paths } from '@/router/paths'
 import { registerSchemaValidation } from "@/constants/validateSchema";
 import { useStore } from "@/store";
-import { registerSchema } from "@/types/auth";
+import { registerSchema } from "@expanse-tracker/shared";
 import { ActionAuthTypes } from "@/store/AuthModule/actions";
 
 const store = useStore();

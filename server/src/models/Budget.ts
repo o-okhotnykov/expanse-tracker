@@ -1,14 +1,8 @@
-import { Schema, model, Document } from "mongoose";
-import { MoneyOperationType } from "../types/budget";
+import { Schema, model } from "mongoose";
+import { BudgetSchema, MoneyOperationType } from "@expanse-tracker/shared";
 
-interface Budget extends Document {
-  name: string;
-  amount: number;
-  date: Date;
-  category: string;
-  type: MoneyOperationType;
+interface Budget extends BudgetSchema {
   user: Schema.Types.ObjectId;
-  _doc: Budget;
 }
 
 const BudgetSchema = new Schema<Budget>(

@@ -1,13 +1,7 @@
 import { Schema, model, Document } from "mongoose";
+import { userSchema } from "@expanse-tracker/shared";
 
-interface User extends Document {
-  fullName: string;
-  email: string;
-  passwordHash: string;
-  _doc: User;
-}
-
-const UserSchema = new Schema<User>(
+const UserSchema = new Schema<userSchema>(
   {
     fullName: { type: String, required: true },
     email: { type: String, required: true },
@@ -16,4 +10,4 @@ const UserSchema = new Schema<User>(
   { timestamps: true }
 );
 
-export default model<User>("User", UserSchema);
+export default model<userSchema>("User", UserSchema);

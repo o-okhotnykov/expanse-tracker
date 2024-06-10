@@ -1,5 +1,5 @@
 import { BASE_URL, HttpService } from "./HttpService";
-import { loginSchema, registerSchema, responseUser } from "@/types/auth";
+import { loginSchema, registerSchema, responseUser } from "@expanse-tracker/shared";
 
 const AUTH = "/auth";
 

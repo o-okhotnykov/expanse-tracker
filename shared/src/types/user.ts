@@ -22,3 +22,10 @@ export interface responseUser {
 export interface Error {
   message: string;
 }
+
+export interface userSchema {
+  fullName: string;
+  email: string;
+  passwordHash: string;
+  _doc: userSchema;
+}

@@ -1,4 +1,4 @@
-import { MoneyOperation } from "@/types/budget";
+import { MoneyOperation, MoneyOperationType } from "@expanse-tracker/shared";
 import { BASE_URL, HttpService } from "./HttpService";
 
 const BUDGET = "/budgets";
@@ -12,6 +12,23 @@ class BudgetService {
   async getAllBudgets() {
     this.apiService.authInterceptor();
     const { data } = await this.apiService.get<MoneyOperation[]>(BUDGET);
+
+    return data;
+  }
+  async getExpanses() {
+    this.apiService.authInterceptor();
+    const { data } = await this.apiService.get<MoneyOperation[]>(
+      `${BUDGET}?type=${MoneyOperationType.expanses}`
+    );
+
+    return data;
+  }
+
+  async getIncomes() {
+    this.apiService.authInterceptor();
+    const { data } = await this.apiService.get<MoneyOperation[]>(
+      `${BUDGET}?type=${MoneyOperationType.incomes}`
+    );
 
     return data;
   }

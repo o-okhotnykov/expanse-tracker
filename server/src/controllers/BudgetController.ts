@@ -86,7 +86,15 @@ export const getAllBudgets = async (
   next: NextFunction
 ) => {
   try {
-    const budgets = await BudgetModel.find({ user: req.userId });
+    const query: { user: string; type?: string } = {
+      user: req.userId,
+    };
+
+    if (req.query.type) {
+      query.type = req.query.type as string;
+    }
+
+    const budgets = await BudgetModel.find(query);
 
     res.json(budgets);
   } catch (error) {

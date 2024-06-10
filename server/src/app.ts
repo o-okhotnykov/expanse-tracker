@@ -6,7 +6,7 @@ import { AppError, errorHandler } from "./exceptions";
 
 mongoose
   .connect(
-    "mongodb+srv://admin:admin@database.828hvnq.mongodb.net/budget?retryWrites=true&w=majority&appName=database"
+    `mongodb+srv://${process.env.DATABASE_NAME}:${process.env.DATABASE_PASSWORD}@database.828hvnq.mongodb.net/budget?retryWrites=true&w=majority&appName=database`
   )
   .then(() => {
     console.log("Connected to MongoDB");
@@ -16,7 +16,6 @@ mongoose
   });
 
 const app = express();
-const port = 3004;
 
 app.use(express.json());
 app.use(cors());
@@ -35,6 +34,8 @@ app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
   errorHandler.handleError(err, res);
 });
 
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  return console.log(
+    `Express is listening at http://localhost:${process.env.PORT}`
+  );
 });
