@@ -1,18 +1,17 @@
 import jwt from "jsonwebtoken";
-import { Response, NextFunction } from "express";
-import { TokenInterface } from "../types/token";
-import { IGetUserAuthInfoRequest } from "../controllers/UserController";
+import { Request, Response, NextFunction } from "express";
 import { AppError, HttpCode } from "../exceptions";
+import { TokenInterface } from "@expanse-tracker/shared";
 
-export default (
-  req: IGetUserAuthInfoRequest,
-  res: Response,
-  next: NextFunction
-) => {
+export default (req: Request, res: Response, next: NextFunction) => {
   const token = (req.headers.authorization || "").replace(/Bearer\s?/, "");
   if (token) {
     try {
-      const decoded: TokenInterface = jwt.verify(token, "secret");
+      const decoded = jwt.verify(
+        token,
+        `${process.env.JWT_SECRET}`
+      ) as TokenInterface;
+
       req.userId = decoded._id;
       next();
     } catch (err) {

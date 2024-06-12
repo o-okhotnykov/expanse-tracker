@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { authRouter, budgetRouter } from "./routes";
 import { AppError, errorHandler } from "./exceptions";
+import "dotenv/config";
 
 mongoose
   .connect(

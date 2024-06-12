@@ -4,8 +4,10 @@ import jwt from "jsonwebtoken";
 import UserModel from "../models/User";
 import { AppError, HttpCode } from "../exceptions/AppError";
 
-export interface IGetUserAuthInfoRequest extends Request {
-  userId: string;
+declare module "express-serve-static-core" {
+  interface Request {
+    userId: string;
+  }
 }
 
 export const register = async (
@@ -89,7 +91,7 @@ export const login = async (
 };
 
 export const getMe = async (
-  req: IGetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import BudgetModel from "../models/Budget";
-import { IGetUserAuthInfoRequest } from "./UserController";
 
 export const createBudget = async (
-  req: IGetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -25,7 +24,7 @@ export const createBudget = async (
 };
 
 export const deleteBudget = async (
-  req: IGetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -40,7 +39,7 @@ export const deleteBudget = async (
 };
 
 export const updateBudget = async (
-  req: IGetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -65,7 +64,7 @@ export const updateBudget = async (
 };
 
 export const getBudget = async (
-  req: IGetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -81,7 +80,7 @@ export const getBudget = async (
 };
 
 export const getAllBudgets = async (
-  req: IGetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
