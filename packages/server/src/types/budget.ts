@@ -1,30 +1,11 @@
-export enum MoneyOperationType {
-  expanses = "expanses",
-  incomes = "incomes",
-}
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import type { AppRouter } from "../routes";
 
-export interface MoneyOperation {
-  _id: string;
-  name: string;
-  amount: number;
-  date: Date;
-  category: string;
-  type: MoneyOperationType;
-}
+type RouterInput = inferRouterInputs<AppRouter>;
+type RouterOutput = inferRouterOutputs<AppRouter>;
 
-export interface ResponseBudget {
-  name: string;
-  amount: number;
-  date: Date;
-  category: string;
-  type: MoneyOperationType;
-}
+export type FetchBudgetsInput = RouterInput["budget"]["getAllBudgets"];
+export type FetchBudgetsOutput = RouterOutput["budget"]["getAllBudgets"];
 
-export interface BudgetSchema {
-  name: string;
-  amount: number;
-  date: Date;
-  category: string;
-  type: MoneyOperationType;
-  _doc: BudgetSchema;
-}
+export type CreateBudgetInput = RouterInput["budget"]["postBudget"];
+export type CreateBudgetOutput = RouterOutput["budget"]["postBudget"];

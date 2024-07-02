@@ -2,7 +2,7 @@ import {
   getMeValidation,
   loginValidation,
   registerValidation,
-} from "../validations/validation";
+} from "../validations";
 import { login, register, getMe } from "../controllers/UserController";
 import { procedure, router } from "../trpc";
 

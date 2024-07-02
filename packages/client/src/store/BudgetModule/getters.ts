@@ -1,38 +1,44 @@
 import { GetterTree } from "vuex";
-import { MoneyOperation, MoneyOperationType } from "@/types/budget";
+import { MoneyOperation } from "@/types/budget";
 import { BudgetState } from "./state";
 import { CategoriesAmount } from "@/constants/categories";
 import { RootState } from "..";
+import { budgetSchema } from "@expanse-tracker/server/src";
 
-export type Getters = {
-  incomes(state: BudgetState): MoneyOperation[];
-  expanses(state: BudgetState): MoneyOperation[];
-  balance(
+export enum GetterBudgetsTypes {
+  INCOMES = "INCOMES",
+  EXPANSES = "EXPANSES",
+  BALANCE = "BALANCE",
+  CATEGORIES_EXPENSE_AMOUNT = "CATEGORIES_EXPENSE_AMOUNT",
+  CATEGORIES_INCOME_AMOUNT = "CATEGORIES_INCOME_AMOUNT",
+}
+
+export type GettersBudgets = {
+  [GetterBudgetsTypes.INCOMES](state: BudgetState): budgetSchema[];
+  [GetterBudgetsTypes.EXPANSES](state: BudgetState): budgetSchema[];
+  [GetterBudgetsTypes.BALANCE](
     state: BudgetState,
     getters: { incomes: MoneyOperation[]; expanses: MoneyOperation[] }
   ): number;
-  categoriesExpanseAmount(
+  [GetterBudgetsTypes.CATEGORIES_EXPENSE_AMOUNT](
     state: BudgetState,
     getters: { expanses: MoneyOperation[] }
   ): CategoriesAmount;
-  categoriesIncomeAmount(
+  [GetterBudgetsTypes.CATEGORIES_INCOME_AMOUNT](
     state: BudgetState,
     getters: { incomes: MoneyOperation[] }
   ): CategoriesAmount;
 };
 
-export const getters: GetterTree<BudgetState, RootState> & Getters = {
-  incomes: (state) => {
-    return state.budgets.filter(
-      (income) => income.type === MoneyOperationType.incomes
-    );
+export const budgetsGetters: GetterTree<BudgetState, RootState> &
+  GettersBudgets = {
+  [GetterBudgetsTypes.INCOMES]: (state) => {
+    return state.budgets.filter((income) => income.type === "expanse");
   },
-  expanses: (state) => {
-    return state.budgets.filter(
-      (expanse) => expanse.type === MoneyOperationType.expanses
-    );
+  [GetterBudgetsTypes.EXPANSES]: (state) => {
+    return state.budgets.filter((expanse) => expanse.type === "income");
   },
-  balance: (_, getters) => {
+  [GetterBudgetsTypes.BALANCE]: (_, getters) => {
     const incomeBalance = getters.incomes.reduce(
       (acc, income) => acc + income.amount,
       0
@@ -41,9 +47,10 @@ export const getters: GetterTree<BudgetState, RootState> & Getters = {
       (acc, income) => acc + income.amount,
       0
     );
+
     return incomeBalance - expanseBalance;
   },
-  categoriesExpanseAmount(_, { expanses }) {
+  [GetterBudgetsTypes.CATEGORIES_EXPENSE_AMOUNT]: (_, { expanses }) => {
     return expanses.reduce(
       (acc, { category, amount }) => ({
         ...acc,
@@ -52,7 +59,7 @@ export const getters: GetterTree<BudgetState, RootState> & Getters = {
       {} as CategoriesAmount
     );
   },
-  categoriesIncomeAmount(_, { incomes }) {
+  [GetterBudgetsTypes.CATEGORIES_INCOME_AMOUNT]: (_, { incomes }) => {
     return incomes.reduce(
       (acc, { category, amount }) => ({
         ...acc,

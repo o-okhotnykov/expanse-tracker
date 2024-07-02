@@ -1,65 +1,68 @@
 import { NextFunction, Request, Response } from "express";
 import BudgetModel from "../models/Budget";
+import {
+  budgetSchema,
+  createBudgetSchema,
+  deleteBudgetSchema,
+  getAllBudgetsSchema,
+  updateBudgetSchema,
+} from "../validations/budget";
+import { TRPCError } from "@trpc/server";
 
-export const createBudget = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const postBudget = async (input: createBudgetSchema) => {
   try {
     const doc = new BudgetModel({
-      name: req.body.name,
-      amount: req.body.amount,
-      date: req.body.date,
-      category: req.body.category,
-      type: req.body.type,
-      user: req.userId,
+      name: input.name,
+      amount: input.amount,
+      date: input.date,
+      category: input.category,
+      type: input.type,
+      // user: input.userId,
     });
 
     const budget = await doc.save();
-    res.json(budget);
+
+    return budget;
   } catch (error) {
-    next(error);
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "INTERNAL_SERVER_ERROR",
+    });
   }
 };
 
-export const deleteBudget = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const deleteBudget = async (input: deleteBudgetSchema) => {
   try {
-    const postId = req.params.id;
-
-    await BudgetModel.findOneAndDelete({ _id: postId });
-    res.json({ message: "Budget deleted successfully" });
+    await BudgetModel.findOneAndDelete({ _id: input.postId });
+    return { message: "Budget deleted successfully" };
   } catch (error) {
-    next(error);
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "INTERNAL_SERVER_ERROR",
+    });
   }
 };
 
-export const updateBudget = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const updateBudget = async (input: updateBudgetSchema) => {
   try {
-    const postId = req.params.id;
-
+    const { postId, name, amount, date, category, type } = input;
     await BudgetModel.updateOne(
       { _id: postId },
       {
-        name: req.body.name,
-        amount: req.body.amount,
-        date: req.body.date,
-        category: req.body.category,
-        type: req.body.type,
-        user: req.userId,
+        name,
+        amount,
+        date,
+        category,
+        type,
+        //  user: req.userId,
       }
     );
-    res.json({ message: "Budget updated successfully" });
+    return { message: "Budget updated successfully" };
   } catch (error) {
-    next(error);
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "INTERNAL_SERVER_ERROR",
+    });
   }
 };
 
@@ -79,25 +82,23 @@ export const getBudget = async (
   }
 };
 
-export const getAllBudgets = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getBudgets = async () => {
   try {
-    const query: { user: string; type?: string } = {
-      user: req.userId,
-    };
+    // const query: { user: string; type?: string } = {
+    //   user: input.userId,
+    // };
 
-    if (req.query.type) {
-      query.type = req.query.type as string;
-    }
+    // if (input.query.type) {
+    //   query.type = req.query.type as string;
+    // }
 
-    const budgets = await BudgetModel.find(query);
+    const budgets: budgetSchema[] = await BudgetModel.find();
 
-    res.json(budgets);
+    return budgets;
   } catch (error) {
-    console.log(error);
-    next(error);
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "INTERNAL_SERVER_ERROR",
+    });
   }
 };

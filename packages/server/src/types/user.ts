@@ -1,30 +1,14 @@
-export interface registerSchema {
-  fullName: string;
-  email: string;
-  password: string;
-}
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import type { AppRouter } from "../routes";
 
-export interface loginSchema {
-  email: string;
-  password: string;
-}
+type RouterInput = inferRouterInputs<AppRouter>;
+type RouterOutput = inferRouterOutputs<AppRouter>;
 
-export interface responseUser {
-  fullName: string;
-  email: string;
-  _id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  userToken: string;
-  user: string;
-}
+export type LoginUserInput = RouterInput["user"]["login"];
+export type LoginUserOutput = RouterOutput["user"]["login"];
 
-export interface Error {
-  message: string;
-}
+export type RegisterUserInput = RouterInput["user"]["register"];
+export type RegisterUserOutput = RouterOutput["user"]["register"];
 
-export interface userSchema {
-  fullName: string;
-  email: string;
-  passwordHash: string;
-}
+export type GetCurrentUserInput = RouterInput["user"]["getMe"];
+export type GetCurrentUserOutput = RouterOutput["user"]["getMe"];

@@ -4,7 +4,7 @@
     <v-row justify="center">
       <v-col class="mt-2" cols="4">
         <v-card class="pa-5">
-          <strong class="text-h3">{{ store.getters.balance }}$</strong>
+          <strong class="text-h3">{{ store.getters(GetterBudgetsTypes.BALANCE) }}$</strong>
           <p class="text-subtitle-2">Current balance</p>
           <div class="d-flex justify-space-between">
             <AddExpanse />
@@ -23,14 +23,13 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useStore } from "@/store";
+import { useBudgetsStore } from "@/store";
 import AddIncome from "@@/Buttons/AddIncome.vue";
 import AddExpanse from '@@/Buttons/AddExpanse.vue'
 import Chart from '@@/Chart/index.vue'
-import { ActionBudgetTypes } from "@/store/BudgetModule/actions";
+import { ActionBudgetTypes, GetterBudgetsTypes } from "@/store/BudgetModule";
 
-
-const store = useStore();
+const store = useBudgetsStore();
 
 onMounted(() => {
   store.dispatch(ActionBudgetTypes.FETCH_BUDGETS)

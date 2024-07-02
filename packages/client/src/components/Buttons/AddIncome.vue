@@ -30,12 +30,13 @@
 import { useField, useForm, Form } from "vee-validate";
 import DatePicker from "@@/UI/DatePicker.vue";
 import { IncomeCategories } from '@/constants/categories'
-import { useStore } from "@/store";
+import { useBudgetsStore } from "@/store";
 import { MoneyOperationType } from "@/types/budget";
 import { validateIncomeSchema } from "@/constants/validateSchema";
 import { ActionBudgetTypes } from "@/store/BudgetModule/actions";
+import { IncomeCategory } from "@expanse-tracker/server/src/validations/categories";
 
-const store = useStore();
+const store = useBudgetsStore();
 
 const { handleSubmit } = useForm<{
   amount: number, category: string, date: string
@@ -48,6 +49,6 @@ const amount = useField<number>("amount");
 const category = useField<string>("category");
 
 const submit = handleSubmit(values => {
-  store.dispatch(ActionBudgetTypes.POST_BUDGET, { ...values, type: MoneyOperationType.incomes, name: category.value.value, date: new Date(values.date) });
+  store.dispatch(ActionBudgetTypes.POST_BUDGET, { ...values, type: MoneyOperationType.incomes, name: category.value.value, date: new Date(values.date), category: values.category as IncomeCategory });
 })
 </script>

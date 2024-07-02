@@ -1,63 +1,64 @@
 import { ActionContext, ActionTree } from "vuex";
-import { MutationAuthTypes, Mutations } from "./mutations";
-import { AuthState } from "./state";
 import {
-  loginSchema,
-  registerSchema,
-  getMeSchema,
-} from "../../../../server/src/validations";
+  RegisterUserInput,
+  GetCurrentUserInput,
+  LoginUserInput,
+} from "@expanse-tracker/server/src";
 import { authService } from "@/services/AuthService";
 import { RootState } from "@/store";
+import { MutationAuthTypes, MutationsAuth } from "./mutations";
+import { AuthState } from "./state";
 
 export enum ActionAuthTypes {
   REGISTER_USER = "REGISTER_USER",
   LOGIN_USER = "LOGIN_USER",
   LOGOUT_USER = "LOGOUT_USER",
-  GET_ME = "GET_MEs",
+  GET_ME = "GET_ME",
 }
 
 type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
+  commit<K extends keyof MutationsAuth>(
     key: K,
-    payload?: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>;
+    payload?: Parameters<MutationsAuth[K]>[1]
+  ): ReturnType<MutationsAuth[K]>;
 } & Omit<ActionContext<AuthState, RootState>, "commit">;
 
-export interface Actions {
+export interface ActionsAuth {
   [ActionAuthTypes.REGISTER_USER](
     { commit }: AugmentedActionContext,
-    payload: registerSchema
+    payload: RegisterUserInput
   ): Promise<void>;
   [ActionAuthTypes.LOGIN_USER](
     { commit }: AugmentedActionContext,
-    payload: loginSchema
+    payload: LoginUserInput
   ): Promise<void>;
   [ActionAuthTypes.LOGOUT_USER]({ commit }: AugmentedActionContext): void;
 }
 
-export const actions: ActionTree<AuthState, RootState> & Actions = {
-  async [ActionAuthTypes.REGISTER_USER]({ commit }, payload: registerSchema) {
+export const actions: ActionTree<AuthState, RootState> & ActionsAuth = {
+  async [ActionAuthTypes.REGISTER_USER]({ commit }, payload) {
     try {
       const data = await authService.registerUser(payload);
-      commit(MutationAuthTypes.COMMIT_USER, data);
+
+      commit(MutationAuthTypes.REGISTER_USER, data);
     } catch (error) {
       console.log(error);
     }
   },
-  async [ActionAuthTypes.LOGIN_USER]({ commit }, payload: loginSchema) {
+  async [ActionAuthTypes.LOGIN_USER]({ commit }, payload) {
     try {
       const data = await authService.loginUser(payload);
 
-      commit(MutationAuthTypes.COMMIT_USER, data);
+      commit(MutationAuthTypes.LOGIN_USER, data);
     } catch (error) {
       console.log(error);
     }
   },
-  async [ActionAuthTypes.GET_ME]({ commit }, payload: getMeSchema) {
+  async [ActionAuthTypes.GET_ME]({ commit }, payload) {
     try {
       const data = await authService.getMe(payload);
 
-      commit(MutationAuthTypes.COMMIT_USER, data);
+      commit(MutationAuthTypes.GET_ME, data);
     } catch (error) {
       console.log(error);
     }

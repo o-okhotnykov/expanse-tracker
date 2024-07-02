@@ -30,14 +30,14 @@ import { useField, useForm, Form } from "vee-validate";
 import { toTypedSchema } from '@vee-validate/yup';
 import { Paths, PathsNames } from '@/router/paths'
 import { loginSchemaValidation } from "@/constants/validateSchema";
-import { useStore } from "@/store";
+import { useAuthStore } from "@/store";
 import { loginSchema } from "@/types/user";
 import { useRouter } from 'vue-router';
 import { ActionAuthTypes } from "@/store/AuthModule/actions";
 
 const router = useRouter()
 
-const store = useStore();
+const store = useAuthStore();
 
 const { handleSubmit } = useForm<loginSchema>({
     validationSchema: toTypedSchema(loginSchemaValidation),

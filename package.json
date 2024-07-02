@@ -16,6 +16,8 @@
     "dependencies": {
         "concurrently": "^7.0.0",
         "dotenv": "^16.4.5",
+        "superjson": "^2.2.1",
+        "trpc-transformer": "^3.2.2",
         "zod": "^3.23.8"
     }
 }

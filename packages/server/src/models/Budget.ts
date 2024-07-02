@@ -1,11 +1,20 @@
 import { Schema, model } from "mongoose";
-import { BudgetSchema, MoneyOperationType } from "../types/budget";
 
-interface Budget extends BudgetSchema {
+enum MoneyOperationType {
+  expanses = "expanses",
+  incomes = "incomes",
+}
+
+interface BudgetSchema {
+  name: string;
+  amount: number;
+  date: Date;
+  category: string;
+  type: MoneyOperationType;
   user: Schema.Types.ObjectId;
 }
 
-const BudgetSchema = new Schema<Budget>(
+const BudgetSchema = new Schema<BudgetSchema>(
   {
     name: { type: String, required: true },
     amount: { type: Number, required: true },
@@ -27,4 +36,4 @@ const BudgetSchema = new Schema<Budget>(
   { timestamps: true }
 );
 
-export default model<Budget>("Budget", BudgetSchema);
+export default model<BudgetSchema>("Budget", BudgetSchema);

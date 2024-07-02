@@ -1,4 +1,4 @@
-import { responseUser } from "@/types/user";
+import { LoginUserOutput as responseUser } from "@expanse-tracker/server/src";
 
 export interface AuthState {
   user: responseUser | null;

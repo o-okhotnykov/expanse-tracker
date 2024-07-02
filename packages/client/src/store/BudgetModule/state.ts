@@ -1,7 +1,7 @@
-import { MoneyOperation } from "@/types/budget";
+import { budgetSchema } from "@expanse-tracker/server/src";
 
 export interface BudgetState {
-  budgets: MoneyOperation[];
+  budgets: budgetSchema[];
   balance: number;
 }
 

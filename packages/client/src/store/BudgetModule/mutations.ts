@@ -1,5 +1,8 @@
 import { MutationTree } from "vuex";
-import { MoneyOperation, MoneyOperationType } from "@/types/budget";
+import {
+  budgetSchema,
+  createBudgetSchema,
+} from "@expanse-tracker/server/src";
 import { BudgetState } from "./state";
 
 export enum MutationBudgetTypes {
@@ -9,23 +12,20 @@ export enum MutationBudgetTypes {
   PATCH_BUDGET = "PATCH_BUDGET",
 }
 
-export type Mutations<S = BudgetState> = {
-  [MutationBudgetTypes.FETCH_BUDGETS](
-    state: S,
-    payload: MoneyOperation[]
-  ): void;
-  [MutationBudgetTypes.ADD_BUDGET](state: S, payload: MoneyOperation): void;
+export type MutationsBudget<S = BudgetState> = {
+  [MutationBudgetTypes.FETCH_BUDGETS](state: S, payload: budgetSchema[]): void;
+  [MutationBudgetTypes.ADD_BUDGET](state: S, payload: createBudgetSchema): void;
   [MutationBudgetTypes.DELETE_BUDGET](state: S, payload: { id: string }): void;
-  [MutationBudgetTypes.PATCH_BUDGET](state: S, payload: MoneyOperation): void;
+  // [MutationBudgetTypes.PATCH_BUDGET](state: S, payload: MoneyOperation): void;
 };
 
-export const mutations: MutationTree<BudgetState> & Mutations = {
-  [MutationBudgetTypes.FETCH_BUDGETS](state, payload: MoneyOperation[]) {
+export const budgetsMutations: MutationTree<BudgetState> & MutationsBudget = {
+  [MutationBudgetTypes.FETCH_BUDGETS](state, payload: budgetSchema[]) {
     state.budgets = payload;
   },
-  [MutationBudgetTypes.ADD_BUDGET](state, payload: MoneyOperation) {
+  [MutationBudgetTypes.ADD_BUDGET](state, payload) {
     state.budgets.push(payload);
-    if (payload.type === MoneyOperationType.expanses) {
+    if (payload.type === "expanse") {
       state.balance -= Number(payload.amount);
     } else {
       state.balance += Number(payload.amount);
@@ -39,12 +39,12 @@ export const mutations: MutationTree<BudgetState> & Mutations = {
       state.budgets.splice(index, 1);
     }
   },
-  [MutationBudgetTypes.PATCH_BUDGET](state, payload: MoneyOperation) {
-    const index = state.budgets.findIndex(
-      (budget) => budget._id === payload._id
-    );
-    if (index !== -1) {
-      state.budgets[index] = payload;
-    }
-  },
+  // [MutationBudgetTypes.PATCH_BUDGET](state, payload: MoneyOperation) {
+  //   const index = state.budgets.findIndex(
+  //     (budget) => budget._id === payload._id
+  //   );
+  //   if (index !== -1) {
+  //     state.budgets[index] = payload;
+  //   }
+  // },
 };

@@ -1,3 +1,3 @@
 export { userRouter } from "./user.router";
-export { router as budgetRouter } from "./budgets";
+export { budgetRouter } from "./budget.router";
 export { AppRouter } from "./app";

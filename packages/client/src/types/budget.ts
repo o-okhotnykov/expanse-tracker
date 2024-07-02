@@ -1,6 +1,6 @@
 export enum MoneyOperationType {
-  expanses = "expanses",
-  incomes = "incomes",
+  expanses = "expanse",
+  incomes = "income",
 }
 
 export interface MoneyOperation {

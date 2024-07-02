@@ -50,8 +50,8 @@ const name = useField<string>("name");
 const amount = useField<number>("amount");
 const category = useField<string>("category");
 
-const submit = handleSubmit(values => {
-    store.dispatch(ActionBudgetTypes.PATCH_BUDGET, { ...values, _id: props._id, type: props.type, date: new Date(props.date) });
-    emit("toggleEditing");
-})
+// const submit = handleSubmit(values => {
+//     store.dispatch(ActionBudgetTypes.PATCH_BUDGET, { ...values, _id: props._id, type: props.type, date: new Date(props.date) });
+//     emit("toggleEditing");
+// })
 </script>

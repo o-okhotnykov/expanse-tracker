@@ -15,18 +15,18 @@
 import { computed, ref, watchEffect } from "vue";
 import { DoughnutChart, useDoughnutChart } from "vue-chart-3";
 import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
-import { useStore } from '@/store';
+import { useBudgetsStore } from '@/store';
+import { GetterBudgetsTypes } from "@/store/BudgetModule";
 
 
 Chart.register(...registerables);
 
-const store = useStore()
+const store = useBudgetsStore()
 const type = ref<'income' | 'expanse'>('expanse')
 const toggleLegend = ref(true);
-const categoriesValues = ref(store.getters.categoriesExpanseAmount)
-
-watchEffect(() => categoriesValues.value = type.value === 'expanse' ? store.getters.categoriesExpanseAmount : store.getters.categoriesIncomeAmount)
-
+const categoriesValues = ref(store.getters(GetterBudgetsTypes.CATEGORIES_EXPENSE_AMOUNT))
+console.log(store);
+watchEffect(() => categoriesValues.value = type.value === 'expanse' ? store.getters(GetterBudgetsTypes.CATEGORIES_EXPENSE_AMOUNT) : store.getters(GetterBudgetsTypes.CATEGORIES_INCOME_AMOUNT))
 const data = computed<ChartData<"doughnut">>(() => ({
     labels: Object.keys(categoriesValues.value),
     datasets: [

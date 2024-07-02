@@ -9,7 +9,7 @@
                     </v-tabs>
                     <v-window v-model="tab">
                         <v-window-item :value="Tab.Expanse">
-                            <v-data-iterator :items="store.getters.expanses" :page="page">
+                            <v-data-iterator :items="store.getters(GetterBudgetsTypes.EXPANSES)" :page="page">
                                 <template v-slot:default="{ items }">
                                     <template v-for="item in items" :key="item.raw.id">
                                         <HistoryCard v-bind="{ ...item.raw }" />
@@ -18,7 +18,7 @@
                             </v-data-iterator>
                         </v-window-item>
                         <v-window-item :value="Tab.Income">
-                            <v-data-iterator :items="store.getters.incomes" :page="page">
+                            <v-data-iterator :items="store.getters(GetterBudgetsTypes.INCOMES)" :page="page">
                                 <template v-slot:default="{ items }">
                                     <template v-for="item in items" :key="item.raw.id">
                                         <HistoryCard v-bind="{ ...item.raw }" />
@@ -34,10 +34,10 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/store';
+import { useBudgetsStore } from '@/store';
 import { onMounted, ref } from 'vue'
 import HistoryCard from './HistoryCard.vue'
-import { ActionBudgetTypes } from '@/store/BudgetModule/actions';
+import { ActionBudgetTypes, GetterBudgetsTypes } from '@/store/BudgetModule';
 
 enum Tab {
     Expanse = 1, Income = 2
@@ -45,7 +45,7 @@ enum Tab {
 const tab = ref<Tab>(Tab.Expanse)
 const page = ref(1)
 
-const store = useStore();
+const store = useBudgetsStore();
 
 onMounted(() => {
     store.dispatch(ActionBudgetTypes.FETCH_BUDGETS)
